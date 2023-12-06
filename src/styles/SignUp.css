@@ -1,0 +1,42 @@
+
+
+.sign-up-modal {
+  position: absolute;
+  display: flex;
+  align-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  outline: none;
+  overflow: auto;
+  max-width: 40%;
+  max-height: 80%;
+  flex-wrap: nowrap;
+}
+
+.sign-up-form {
+  width: 400px;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.signup{
+  
+  width: 388px;
+  height: 59px;
+  flex-shrink: 0;
+
+  border-radius: 5px;
+  background: #31A1A9;
+}
+
+
+

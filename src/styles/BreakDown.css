@@ -1,0 +1,43 @@
+/* modal.css */
+
+.modal-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .card {
+    position: relative;
+    background-color: #fff; /* Set background color to white */
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden; /* Hide overflowing content */
+  }
+  
+  .card::before {
+    content: ''; /* Add pseudo-element for bounding box */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid #3498db; /* Set bounding box color */
+    pointer-events: none; /* Make sure the bounding box doesn't interfere with content */
+  }
+  
+  .card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .close-button {
+    width: 100px;
+    height: 50px;
+    margin: 0 auto 0;
+  }
+  
+  /* Adjust styling as needed */
+  

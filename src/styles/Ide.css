@@ -1,0 +1,120 @@
+.terminal-output {
+    border: 1px solid #2d2d2d;
+    background-color: #0e0e0e;
+    color: #e6e6e6;
+    padding: 40px 20px 20px 20px;
+    height: 300px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    width: 50vw;
+    height: 40vh;
+  }
+  
+  .terminal-line {
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    text-align: left;
+  }
+  
+  .terminal-line::before {
+    content: '$'; /* Add a command prompt symbol before each line */
+    color: #569cd6;
+    margin-right: 8px;
+  }
+  
+  .terminal-line.success::before {
+    content: '$'; /* Change the prompt symbol for success messages */
+    color: #4caf50;
+  }
+  
+  .terminal-line.error::before {
+    content: '$'; /* Change the prompt symbol for error messages */
+    color: #e44d26;
+  }
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  .wrapper {
+    display: relative;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .topbar {
+    position: relative;
+    background-color: #B40000;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    z-index: 2;
+  }
+
+  .container {
+    display: flex;
+    flex: 1;
+    position: absolute;
+    top: 0px; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+  }
+  
+  .utils {
+    background-color: #333;
+    width: 50px;
+    padding: 10px;
+    min-height: 100vh;
+  }
+  
+  .question-container,
+  .output-container {
+    flex: 1;
+    margin: 0 0 0 0;
+    height: 100%;
+  }
+  
+  .header {
+    background-color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .question {
+    background-color: #333;
+    padding: 10px;
+    height: 100%; /* Adjust based on your content */
+  }
+  
+  .editor {
+    background-color: #333;
+    height: 50vh;
+    margin-top: 80px;
+  }  
+
+
+  textarea {
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #333;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    resize: none;
+    outline: none;
+  }
