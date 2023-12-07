@@ -14,6 +14,7 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
   const [indGraphData, setIndGraphData] = useState(null);
   const [base64String, setBase64String] = useState("");
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const getLatestEntryFromApiResCollection = async () => {
     
@@ -57,7 +58,9 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
     } catch (error) {
       console.error("Error getting latest entry from otherCollection:", error);
       setLatestEntry(null);
-    }
+    } finally {
+        setLoading(false); // Set loading to false when data fetch completes
+      }
   };
   async function makeApiRequest(imageUrl) {
     const apiUrl = 'http://13.59.173.12:8000/gaussian_extraction'; 
@@ -132,7 +135,14 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
       onRequestClose={onClose}
       contentLabel="Problem Modal"
     >
-         {data && (  // Check if data is not null
+    <button className="close-button" onClick={onClose}>
+      Close
+    </button>
+          {loading ? (
+        // Render your loading animation here
+        <h1>Loading...</h1>
+      ) : (
+        data && (  // Check if data is not null
       <Container>
         <Row>
           <Col>
@@ -215,10 +225,8 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
           </Col>
         </Row>
       </Container>
+        )
     )}
-    <button className="close-button" onClick={onClose}>
-      Close
-    </button>
     </Modal>
   );
 };

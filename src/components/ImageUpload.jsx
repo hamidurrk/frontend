@@ -23,6 +23,7 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
     const [imgUrl, setImgUrl] = useState(null);
     const [file, setFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     // const handleImageChange = (e) => {
     //     const file = e.target.files[0];
@@ -118,6 +119,7 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
       };
 
     const uploadImageAndCheck = async () => {
+      setLoading(true);
         const uploadTask = ref(imageDb, 'test-code/image');
         try {
           await uploadBytes(uploadTask, file);
@@ -141,12 +143,14 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
             const {raw_ocr_output_code, encoded_image_with_boudning_boxes, delta_graph_json, indentation_graph_json, ir_algo_output_code, final_code} = apiResponse;
             console.log(final_code);
             onApiResponse(apiResponse);
+            setLoading(false);
             
             onClose();
             alert("Image Uploaded Successfully");
           }
         } catch (error) {
           console.log('Error uploading image:', error);
+        } finally {
         }
       };
 
@@ -170,7 +174,7 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
                 </div>
               )}
               <br/>
-              <Button onClick={uploadImageAndCheck} variant="primary">Upload</Button>
+              <Button className="close-button" onClick={uploadImageAndCheck} >{loading ? 'Uploading...' : 'Upload'}</Button>
             </Form>
           </Card>
 
