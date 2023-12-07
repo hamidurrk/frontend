@@ -16,54 +16,84 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
 //   const [data, setData] = useState(null);
 
   const getLatestEntryFromApiResCollection = async () => {
-    console.log(data.final_code);
     setDeltaGraphData(data.delta_graph_json);
-    setIndGraphData(data.indentation_graph_json);
-    setBase64String(
-      `data:image/png;base64,${data.encoded_image_with_boudning_boxes}`
-    );
-    ////////////////////////////////////////////////////////////
-    // try {
-    //   const q = query(apiResCollectionRef);
-    //   const querySnapshot = await getDocs(q);
-    //   const rawData = querySnapshot.docs.map((doc) => ({
-    //     ...doc.data(),
-    //     id: doc.id,
-    //   }));
-    //   console.log(rawData);
+            setIndGraphData(data.indentation_graph_json);
+            setBase64String(
+            `data:image/png;base64,${data.encoded_image_with_boudning_boxes}`
+            );
+    try {
+      const q = query(apiResCollectionRef);
+      const querySnapshot = await getDocs(q);
+      const rawData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      console.log(rawData);
 
-    //   if (!querySnapshot.empty) {
-    //     const latestEntryData = querySnapshot.docs[0].data();
-    //     console.log("Latest entry from otherCollection:", latestEntryData);
-    //     console.log(latestEntryData.data);
+      if (!querySnapshot.empty) {
+        const latestEntryData = querySnapshot.docs[0].data();
+        console.log("Latest entry from otherCollection:", latestEntryData);
+        console.log(latestEntryData.imgUrl);
 
-    //     // Check if data property exists before parsing
-    //     if (latestEntryData) {
-    //         const extractedData = JSON.parse(latestEntryData.data);
-    //         setLatestEntry(extractedData);
-    //         console.log("Extracted data:", extractedData);
-    //         setDeltaGraphData(extractedData.delta_graph_json);
-    //         setIndGraphData(extractedData.indentation_graph_json);
-    //         setBase64String(
-    //         `data:image/png;base64,${extractedData.encoded_image_with_boudning_boxes}`
-    //         );
-    //         // setData(extractedData)
-    //     } else {
-    //       console.warn(
-    //         "Data property not found in latest entry:",
-    //         latestEntryData
-    //       );
-    //       setLatestEntry(null);
-    //     }
-    //   } else {
-    //     console.log("No entries found in otherCollection.");
-    //     setLatestEntry(null);
-    //   }
-    // } catch (error) {
-    //   console.error("Error getting latest entry from otherCollection:", error);
-    //   setLatestEntry(null);
-    // }
+        if (latestEntryData) {
+            let apiResponse = await makeApiRequest(latestEntryData.imgUrl);
+            console.log(apiResponse);
+            const {raw_ocr_output_code, encoded_image_with_boudning_boxes, delta_graph_json, indentation_graph_json, ir_algo_output_code, final_code} = apiResponse;
+            console.log(final_code);
+            
+            // setData(apiResponse);   //---------------------------------------------uncomment this before prod---------------//
+
+            // setDeltaGraphData(extractedData.delta_graph_json);
+            // setIndGraphData(extractedData.indentation_graph_json);
+            // setBase64String(
+            // `data:image/png;base64,${extractedData.encoded_image_with_boudning_boxes}`
+            // );
+            // setData(extractedData)
+            
+        } else {
+          console.warn(
+            "Data property not found in latest entry:",
+            latestEntryData
+          );
+          setLatestEntry(null);
+        }
+      } else {
+        console.log("No entries found in otherCollection.");
+        setLatestEntry(null);
+      }
+    } catch (error) {
+      console.error("Error getting latest entry from otherCollection:", error);
+      setLatestEntry(null);
+    }
   };
+  async function makeApiRequest(imageUrl) {
+    const apiUrl = 'http://13.59.173.12:8000/gaussian_extraction'; 
+
+    try {
+        const response = await fetch(apiUrl + '?image_url=' + encodeURIComponent(imageUrl), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            // If the response status code is not OK, throw an error with the status
+            const errorInfo = await response.json();
+            console.error('API request failed:', errorInfo);
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // If the response is OK, parse and log the JSON body
+        const responseData = await response.json();
+        // console.log('API request successful:', responseData);
+        return responseData;
+
+    } catch (error) {
+        console.error('Error during API request:', error);
+    }
+}
+
 
   useEffect(() => {
     if (isOpen) {

@@ -33,9 +33,8 @@
   }
   
   .score-section {
-    display: flex;
     font-size: 24px;
-    align-items: center;
+    margin: auto;
   }
   
   /* QUESTION/TIMER/LEFT SECTION */
@@ -87,7 +86,16 @@
   background: #31A1A9;
 cursor: pointer;
   }
-  
+  .go-home-button {
+    
+    width: 40%;
+    height: 49px;
+    flex-shrink: 0;
+    margin-top: 20px;
+    border-radius: 5px;
+    background: #31A1A9;
+    cursor: pointer;
+    }
   .correct {
     background-color: #2f922f;
   }
@@ -97,7 +105,7 @@ cursor: pointer;
   }
   
   .quiz-button:hover {
-    background-color: #555e7d;
+    background-color: #1b7885;
   }
   
   .quiz-button:focus {

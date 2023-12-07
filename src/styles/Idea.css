@@ -23,7 +23,7 @@ body {
         background: #fff;
         border-radius: 5px;
         border: 1px solid #DEDEDE;
-        color: #ACACAC ;
+        color: grey ;
     }
 
     .code {
@@ -104,12 +104,12 @@ body {
   
   .capture {
     width: fit-content;
-    margin-top: 5px;
+    margin-top: 15px;
   }
   
   .run-button {
     border-radius: 5px;
-    background: #3161A9;
+    background: #31A1A9;
   }
 
   .utils {

@@ -28,7 +28,7 @@ const Ide = () => {
   const [finalCode, setFinalCode] = useState([{}]);
   const [rawEndPointOutput, setRawEndPointOutput] = useState(null);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const [apiResponse, setApiResponse] = useState(null);
+  const [apiResponse, setApiResponse] = useState([{}]);
 
   const [isOutputModalOpen, setIsOutputModalOpen] = useState(false);
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
@@ -56,10 +56,10 @@ const Ide = () => {
     const getQuestions = async () => {
       try {
         const data = await getDocs(dataCollectionRef);
-        console.log(typeof(data))
+        // console.log(typeof(data))
         const questionsData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         setQuestion(questionsData);
-        console.log(question);
+        // console.log(question);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -81,13 +81,17 @@ const Ide = () => {
         ir_algo_output_code: ir_algo_output_code,
         timestamp: new Date(), 
       };
+      const newDataObject = {
+        data: apiResponseData,
+      };
       console.log(final_code);
       handleCodeChange(final_code);
       const jsonString = JSON.stringify(apiResponseData);
-      console.log(jsonString);
+      console.log(newDataObject);
 
-      deleteAllDocuments();
-      addDataToApiResCollection(apiResponseData);
+    //   deleteAllDocuments().then(() => {
+    //     addDataToApiResCollection(newDataObject);
+    // })
     }
   }, [apiResponse]); 
 
@@ -106,6 +110,16 @@ const Ide = () => {
       console.log('All documents deleted successfully.');
     } catch (error) {
       console.error('Error deleting documents:', error);
+    }
+  };
+  const addDataToApiResCollection = async (data) => {
+    try {
+      // const stringifiedData = JSON.stringify(data);
+      // await addDoc(apiResCollectionRef, { data: stringifiedData });
+      await addDoc(apiResCollectionRef, data)
+      console.log('Data added to apiResonses successfully!');
+    } catch (error) {
+      console.error('Error adding data to apiResonses:', error);
     }
   };
 
@@ -167,16 +181,7 @@ const Ide = () => {
       });
   };
 
-  const addDataToApiResCollection = async (data) => {
-    try {
-      // const stringifiedData = JSON.stringify(data);
-      // await addDoc(apiResCollectionRef, { data: stringifiedData });
-      await addDoc(apiResCollectionRef, data)
-      console.log('Data added to apiResonses successfully!');
-    } catch (error) {
-      console.error('Error adding data to apiResonses:', error);
-    }
-  };
+ 
 
   return (
     <div className="wrapper" id="wrapper">
@@ -205,16 +210,16 @@ const Ide = () => {
       <button className="problem button-1" onClick={() => setIsBreakDownOpen(true)}>
         Breakdown
       </button>
-      <button className="code button-1" onClick={() => setIsCodeModalOpen(true)}>
+      {/* <button className="code button-1" onClick={() => setIsCodeModalOpen(true)}>
         Code
       </button>
       <button className="output button-1" onClick={() => setIsOutputModalOpen(true)}>
         Output
-      </button>
+      </button> */}
       <BreakDown
         isOpen={isBreakDownOpen}
         onClose={() => setIsBreakDownOpen(false)}
-        problemData={apiResponse}
+        problemData={[apiResponse.delta_graph_json]}
       />
       <CodeModal
         isOpen={isCodeModalOpen}

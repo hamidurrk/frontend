@@ -169,12 +169,12 @@ const IdeCore = () => {
       <button className="problem button-1" onClick={() => setIsBreakDownOpen(true)}>
         Breakdown
       </button>
-      <button className="code button-1" onClick={() => setIsCodeModalOpen(true)}>
+      {/* <button className="code button-1" onClick={() => setIsCodeModalOpen(true)}>
         Code
       </button>
       <button className="output button-1" onClick={() => setIsOutputModalOpen(true)}>
         Output
-      </button>
+      </button> */}
       <BreakDown
         isOpen={isBreakDownOpen}
         onClose={() => setIsBreakDownOpen(false)}

@@ -3,12 +3,22 @@ import Modal from 'react-modal';
 import { imageDb } from "../firebase";
 import { ref, uploadBytes, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
 import { Card, Form, Button, Image } from 'react-bootstrap';
+import { db } from "../firebase";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 // import { v4 } from "uuid";
 // import { Form, Button, Card, Image } from 'react-bootstrap';
 
 const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
     // const [img,setImg] =useState('');
     // const cid = v4();
+    const apiResCollectionRef = collection(db, "apiResponses");
     const [selectedImage, setSelectedImage] = useState(null);
     const [imgUrl, setImgUrl] = useState(null);
     const [file, setFile] = useState(null);
@@ -79,6 +89,34 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
           }
       }
 
+      const deleteAllDocuments = async () => {
+  
+        try {
+          // Get all documents in the collection
+          const querySnapshot = await getDocs(apiResCollectionRef);
+      
+          // Delete each document
+          querySnapshot.forEach(async (doc) => {
+            await deleteDoc(doc.ref);
+            console.log(`Document with ID ${doc.id} deleted successfully.`);
+          });
+      
+          console.log('All documents deleted successfully.');
+        } catch (error) {
+          console.error('Error deleting documents:', error);
+        }
+      };
+      const addDataToApiResCollection = async (data) => {
+        try {
+          // const stringifiedData = JSON.stringify(data);
+          // await addDoc(apiResCollectionRef, { data: stringifiedData });
+          await addDoc(apiResCollectionRef, data)
+          console.log('Data added to apiResonses successfully!');
+        } catch (error) {
+          console.error('Error adding data to apiResonses:', error);
+        }
+      };
+
     const uploadImageAndCheck = async () => {
         const uploadTask = ref(imageDb, 'test-code/image');
         try {
@@ -92,11 +130,18 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
             uploadImageAndCheck();
           } else {
             console.log(url);
+            const dataObject = {
+              imgUrl: url
+            }
+            deleteAllDocuments().then(() => {
+            addDataToApiResCollection(dataObject);
+          })
             let apiResponse = await makeApiRequest(url);
             console.log(apiResponse);
             const {raw_ocr_output_code, encoded_image_with_boudning_boxes, delta_graph_json, indentation_graph_json, ir_algo_output_code, final_code} = apiResponse;
             console.log(final_code);
             onApiResponse(apiResponse);
+            
             onClose();
             alert("Image Uploaded Successfully");
           }

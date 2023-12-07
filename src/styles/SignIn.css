@@ -72,7 +72,7 @@ button {
 }
 
 button:hover {
-  background-color: #dedede;
+  background-color: #1b7885;
 }
 
 header {
@@ -93,5 +93,5 @@ header {
 }
 
 .sign-up-button:hover {
-  background-color: #88214e;
+  background-color: #1b7885;
 } 
