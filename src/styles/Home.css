@@ -108,6 +108,7 @@
   font-weight: 600;
   width: 200px;
   margin-top: 4vh;
+  margin-bottom: 4vh;
 }
 
 .ide-button:hover {
@@ -137,7 +138,9 @@ li a {
 .component-preview {
   padding: 10px 16px;
   margin: 20px 0;
-  border-bottom: 1px solid #fafafa;
+  /* border-bottom: 1px solid #fafafa; */
+  border-radius: 10px;
+border: 1px solid #DEDEDE;
 }
 .component-preview:hover {
   box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
@@ -165,3 +168,4 @@ li a {
 .auth-signout-button:hover {
   background-color: #1b7885;
 } 
+

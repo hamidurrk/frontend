@@ -25,6 +25,9 @@
     left: 10%;
     width: max-content;
   }
+  .signed-in-as {
+    flex-wrap: nowrap;
+  }
 }  
 @media screen and (max-width: 1150px)  {
   .bg-img{
@@ -33,7 +36,12 @@
   .sign-in-container{
     width: 100vw;
   }
-  
+  .signed-in-as {
+    flex-wrap: wrap;
+  }
+  /* .signed-in-as p {
+    
+  } */
 }
 
 .sign-in-container {
@@ -121,13 +129,14 @@ button:hover {
   background-color: #1b7885;
 }
 
-header {
+.signed-in-as {
   display: flex;
   justify-content: flex-end;
   padding-right: 10vw;
-  padding-top: 2vh;
+  padding-top: 0;
   z-index: +1;
 }
+
 
 .signup-button-1 {
   background: #31a1a9;

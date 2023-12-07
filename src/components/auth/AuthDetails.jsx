@@ -32,16 +32,14 @@ const AuthDetails = () => {
 
   return (
     <div className="signed-in-as">
-      <header>
         {authUser ? (
           <>
-            <p style={{paddingRight: '10px'}}>{`Signed in as ${authUser.email}`}</p>
+            <p style={{paddingRight: '0px'}}>{`${authUser.email}`}</p>
             <button className="auth-signout-button" onClick={userSignOut}>Sign Out</button>
           </>
         ) : (
           <p>Signed Out</p>
         )}
-      </header>
     </div>
   );
 };
