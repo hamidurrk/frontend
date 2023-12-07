@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import Modal from 'react-modal';
 import { imageDb } from "../firebase";
 import { ref, uploadBytes, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
+import { Card, Form, Button, Image } from 'react-bootstrap';
 // import { v4 } from "uuid";
-import { Form, Button, Card, Image } from 'react-bootstrap';
+// import { Form, Button, Card, Image } from 'react-bootstrap';
 
 const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
     // const [img,setImg] =useState('');

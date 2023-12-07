@@ -1,6 +1,5 @@
 // App.js
 import './App.css';
-import { useState } from "react";
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
@@ -9,19 +8,13 @@ import Ide from './components/Ide';
 import IdeCore from './components/IdeCore'; 
 import ImageUpload from './components/ImageUpload';
 import ProblemDetails from './components/ProblemDetails';
-import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
+
 function App() {
+  
   return (
     <Router>
       <div className="App">
-        return <Editor height="90vh" defaultLanguage="javascript" defaultValue="// some comment" />;
-      </div>
-    </Router>
-  );
-}
-
-export default App;
-{/* <main>
+      <main>
           <Switch>
             <Route exact path="/">
               <SignIn />
@@ -44,6 +37,13 @@ export default App;
             <Route exact path="/imgup">
               <ImageUpload />
             </Route>
-            {/* <Redirect from="/" to="/signin" /> */}
-          // </Switch>
-        // </main> 
+            <Redirect from="/" to="/signin" /> 
+          </Switch>
+        </main> 
+      </div>
+    </Router>
+      
+  );
+}
+
+export default App;

@@ -1,4 +1,4 @@
-/* modal.css */
+
 
 .modal-container {
     display: grid;
@@ -10,22 +10,22 @@
   
   .card {
     position: relative;
-    background-color: #fff; /* Set background color to white */
+    background-color: #fff;
     border: 1px solid #ddd;
     padding: 20px;
     text-align: center;
-    overflow: hidden; /* Hide overflowing content */
+    overflow: hidden;
   }
   
   .card::before {
-    content: ''; /* Add pseudo-element for bounding box */
+    content: ''; 
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    border: 2px solid #3498db; /* Set bounding box color */
-    pointer-events: none; /* Make sure the bounding box doesn't interfere with content */
+    border: 2px solid #3498db; 
+    pointer-events: none; 
   }
   
   .card h3 {
@@ -39,5 +39,5 @@
     margin: 0 auto 0;
   }
   
-  /* Adjust styling as needed */
+ 
   

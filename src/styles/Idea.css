@@ -149,7 +149,6 @@ body {
     width: 50vw;
     min-width: 400px;
     height: 100vh;
-    /* padding: 10px 50px 0px 50px; */
   }
 
   .output-container {
@@ -188,7 +187,6 @@ body {
     background-color: #fff;
     min-height: 40%;
     margin: 10px 0 10px;
-    /* padding-right: 70px; */
   }  
 
   .editor .title {
@@ -208,11 +206,9 @@ body {
     background-color: #353535;
     color: #e6e6e6;
     padding: 40px 20px 20px 20px;
-    /* overflow-y: auto; */
     font-family: 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.4;
-    /* margin-right: 70px; */
   }
 
   .terminal-output .title {

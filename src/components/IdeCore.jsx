@@ -9,6 +9,7 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  
 } from "firebase/firestore";
 import Editor from "@monaco-editor/react";
 import iconImage from '../img/camera.png';
@@ -17,7 +18,7 @@ import BreakDown from './BreakDown';
 import CodeModal from './CodeModal';
 import OutputModal from './OutputModal';
 
-const Ide = () => {
+const IdeCore = () => {
   const { id } = useParams();
   const [question, setQuestion] = useState(null);
   const dataCollectionRef = collection(db, "problems");
@@ -227,11 +228,10 @@ const Ide = () => {
                 <div className="terminal-line">|</div>
             )}
             </div>
-
         </div>
       </div>
     </div>
   );
 };
 
-export default Ide;
+export default IdeCore;

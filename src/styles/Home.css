@@ -115,18 +115,20 @@
   padding: 0px 0px 0px 0px;
 }
 
-li a {
-  text-decoration : none; 
-  color : #2d2f31;
-}
-
 .problems {
   width : 50%; 
   background-color : #fff; 
   margin : 40px auto; 
 }
 
-span {
+
+li a {
+  text-decoration : none; 
+  color : #2d2f31;
+}
+
+
+/* span {
   padding : 30px;
   background : #2d2f31; 
   color : white;
@@ -140,35 +142,7 @@ span::after {
   float: right;
   right: 10%;
   background-color : #fff; 
-}
-
-ul {
-  margin-left: 0px;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  padding-inline-start: 0px;
-}
-
-.slide {
-  clear:both;
-  width:100%;
-  height:0px;
-  overflow: hidden;
-  text-align: center;
-  transition: height .4s ease;
-  list-style: none;
-  background-color : #fff; 
-  margin-left: 0px;
-}
-
-.slide li {
-  padding : 30px;
-  font-family: 'Your Modern Font', sans-serif;
-}
-
-#touch {position: absolute; opacity: 0; height: 0px;}    
-
-#touch:checked + .slide {height: 300px;} 
+} */
 
 .component-preview {
   padding: 10px 16px;
