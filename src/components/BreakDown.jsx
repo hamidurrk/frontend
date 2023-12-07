@@ -16,11 +16,7 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
   const [data, setData] = useState(null);
 
   const getLatestEntryFromApiResCollection = async () => {
-    // setDeltaGraphData(data.delta_graph_json);
-    //         setIndGraphData(data.indentation_graph_json);
-    //         setBase64String(
-    //         `data:image/png;base64,${data.encoded_image_with_boudning_boxes}`
-    //         );
+    
     try {
       const q = query(apiResCollectionRef);
       const querySnapshot = await getDocs(q);
@@ -46,17 +42,6 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
           setBase64String(
             `data:image/png;base64,${apiResponse.encoded_image_with_boudning_boxes}`
           );
-
-            
-            
-            // setData(apiResponse);   //---------------------------------------------uncomment this before prod---------------//
-
-            // setDeltaGraphData(extractedData.delta_graph_json);
-            // setIndGraphData(extractedData.indentation_graph_json);
-            // setBase64String(
-            // `data:image/png;base64,${extractedData.encoded_image_with_boudning_boxes}`
-            // );
-            // setData(extractedData)
             
         } else {
           console.warn(
