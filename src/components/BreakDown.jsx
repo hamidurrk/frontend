@@ -13,7 +13,7 @@ const BreakDown = ({ isOpen, onClose, problemData }) => {
   const [deltaGraphData, setDeltaGraphData] = useState(null);
   const [indGraphData, setIndGraphData] = useState(null);
   const [base64String, setBase64String] = useState("");
-  const [data, setData] = useState(null);
+//   const [data, setData] = useState(null);
 
   const getLatestEntryFromApiResCollection = async () => {
     console.log(data.final_code);
@@ -47,7 +47,7 @@ const BreakDown = ({ isOpen, onClose, problemData }) => {
             setBase64String(
             `data:image/png;base64,${extractedData.encoded_image_with_boudning_boxes}`
             );
-            setData(extractedData)
+            // setData(extractedData)
         } else {
           console.warn(
             "Data property not found in latest entry:",
