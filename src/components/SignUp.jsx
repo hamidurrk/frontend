@@ -4,17 +4,21 @@ import { auth } from "../firebase";
 import { FaTimes } from "react-icons/fa";
 import Modal from "react-modal"; 
 import "../styles/SignUp.css";
+import { Link, useHistory } from 'react-router-dom';
 
 const SignUp = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const history = useHistory();
 
   const signUp = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
-        onClose(); // Close the SignUp modal upon successful signup
+        history.push("/quiz");
+        onClose(); 
       })
       .catch((error) => {
         console.log(error);
