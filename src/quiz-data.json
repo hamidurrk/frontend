@@ -1,0 +1,146 @@
+[
+  {
+      "questionID": 1,
+      "content": "What is the output of: print(8 // 3)?",
+      "options": ["2", "2.67", "3", "Syntax Error"],
+      "answerOption": 0,
+      "topics": {
+          "operators": 0.8,
+          "basic_concepts": 0.2
+      },
+      "parameters": {
+          "discrimination": 0.5,
+          "difficulty": -0.5,
+          "guessing": 0.25
+      }
+  },
+  {
+      "questionID": 2,
+      "content": "Which data type is mutable in Python?",
+      "options": ["String", "Tuple", "List", "Integer"],
+      "answerOption": 2,
+      "topics": {
+          "data_types": 1.0
+      },
+      "parameters": {
+          "discrimination": 0.7,
+          "difficulty": 0,
+          "guessing": 0.2
+      }
+  },
+  {
+      "questionID": 3,
+      "content": "How do you start writing a function in Python?",
+      "options": ["function", "def", "func", "create"],
+      "answerOption": 1,
+      "topics": {
+          "functions": 1.0
+      },
+      "parameters": {
+          "discrimination": 0.8,
+          "difficulty": -0.3,
+          "guessing": 0.2
+      }
+  },
+  {
+      "questionID": 4,
+      "content": "What will be the output of: print('Hello' + 'World')?",
+      "options": ["Hello World", "HelloWorld", "Hello+World", "Error"],
+      "answerOption": 1,
+      "topics": {
+          "strings": 0.7,
+          "operators": 0.3
+      },
+      "parameters": {
+          "discrimination": 0.6,
+          "difficulty": -1,
+          "guessing": 0.25
+      }
+  },
+  {
+      "questionID": 5,
+      "content": "Which of the following is used for comments in Python?",
+      "options": ["//", "#", "/* */", "--"],
+      "answerOption": 1,
+      "topics": {
+          "basic_concepts": 1.0
+      },
+      "parameters": {
+          "discrimination": 0.4,
+          "difficulty": -1.5,
+          "guessing": 0.2
+      }
+  },
+  {
+      "questionID": 6,
+      "content": "What does the len() function in Python do?",
+      "options": ["Returns the length of an object", "Converts an object to a string", "Counts the number of items in a list", "None of the above"],
+      "answerOption": 0,
+      "topics": {
+          "functions": 0.6,
+          "basic_concepts": 0.4
+      },
+      "parameters": {
+          "discrimination": 0.7,
+          "difficulty": -0.2,
+          "guessing": 0.2
+      }
+  },
+  {
+      "questionID": 7,
+      "content": "Which loop structure is used to iterate over a sequence?",
+      "options": ["for", "while", "do-while", "repeat-until"],
+      "answerOption": 0,
+      "topics": {
+          "loop": 1.0
+      },
+      "parameters": {
+          "discrimination": 0.9,
+          "difficulty": 0,
+          "guessing": 0.2
+      }
+  },
+  {
+      "questionID": 8,
+      "content": "How do you create a dictionary in Python?",
+      "options": ["{key: value}", "[key: value]", "(key: value)", "<key: value>"],
+      "answerOption": 0,
+      "topics": {
+          "dictionary": 1.0
+      },
+      "parameters": {
+          "discrimination": 0.8,
+          "difficulty": 0.1,
+          "guessing": 0.2
+      }
+  },
+  {
+      "questionID": 9,
+      "content": "What does 'if __name__ == \"__main__\":' do in Python?",
+      "options": ["Checks if the script is run directly", "Initializes the main function", "Declares a variable", "None of the above"],
+      "answerOption": 0,
+      "topics": {
+          "basic_concepts": 0.5,
+          "functions": 0.5
+      },
+      "parameters": {
+          "discrimination": 0.9,
+          "difficulty": 0.2,
+          "guessing": 0.1
+      }
+  },
+  {
+      "questionID": 10,
+      "content": "What is the correct way to handle exceptions in Python?",
+      "options": ["try-catch", "try-except", "try-finally", "try-catch-finally"],
+      "answerOption": 1,
+      "topics": {
+          "error_handling": 1.0
+      },
+      "parameters": {
+          "discrimination": 0.8,
+          "difficulty": 0.3,
+          "guessing": 0.2
+      }
+  }
+]

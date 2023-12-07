@@ -40,6 +40,9 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
             console.log(apiResponse);
             const {raw_ocr_output_code, encoded_image_with_boudning_boxes, delta_graph_json, indentation_graph_json, ir_algo_output_code, final_code} = apiResponse;
             console.log(final_code);
+            // setData(apiResponse)
+
+            
             
             // setData(apiResponse);   //---------------------------------------------uncomment this before prod---------------//
 
@@ -86,7 +89,7 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
 
         // If the response is OK, parse and log the JSON body
         const responseData = await response.json();
-        // console.log('API request successful:', responseData);
+        console.log('API request successful:', responseData);
         return responseData;
 
     } catch (error) {
