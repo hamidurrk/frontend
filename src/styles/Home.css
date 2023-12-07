@@ -130,22 +130,9 @@ li a {
   color : #2d2f31;
 }
 
-
-/* span {
-  padding : 30px;
-  background : #2d2f31; 
-  color : white;
-  font-size : 1.2em;
-  font-variant : small-caps;
-  cursor : pointer;
-  display: block;
+.component-list {
+  width: 50vw;
 }
-
-span::after {
-  float: right;
-  right: 10%;
-  background-color : #fff; 
-} */
 
 .component-preview {
   padding: 10px 16px;

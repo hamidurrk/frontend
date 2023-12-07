@@ -37,7 +37,7 @@ const SignIn = () => {
 
     return (
     <div className="sign-in-page">
-       <header>
+      <header>
        
         <button className="signup-button-1" onClick={() => setIsSignUpModalOpen(true)}>
         Sign Up
@@ -47,7 +47,7 @@ const SignIn = () => {
         onClose={() => setIsSignUpModalOpen(false)}
       />
       </header>
-        <div className="sign-in-container">
+      <div className="sign-in-container">
         <form className="login-form" onSubmit={signIn}>
           <h1>BitSized</h1>
           <p>Email</p>
@@ -66,6 +66,9 @@ const SignIn = () => {
           ></input>
           <button className="login" type="submit">Log In</button>
         </form>
+      </div>
+      <div className="bg-img">
+        
       </div>
     </div>
       

@@ -13,13 +13,27 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   outline: none;
   overflow: auto;
-  max-width: 40%;
-  max-height: 80%;
   flex-wrap: nowrap;
 }
 
 .sign-up-form {
   width: 400px;
+}
+.sign-up-form h1 {
+  height: 30px;
+}
+@media screen and (min-width: 930px) {
+  .sign-up-modal{
+  max-width: 40%;
+  max-height: 80%;
+  }
+}  
+@media screen and (max-width: 930px)  {
+  .sign-up-modal{
+    max-width: 80%;
+    max-height: 80%;
+    }
+  
 }
 
 .close-icon {

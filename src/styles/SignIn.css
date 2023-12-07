@@ -1,6 +1,43 @@
+ .sign-in-page {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  right: 0;
+}
+
+.bg-img {
+  position: absolute;
+  width: 50vw;
+  height: 100%;
+  margin-top: 3vh;
+  background: url(../img/bg.png), lightgray 0px -0.25px / 159.367% 100.051% no-repeat;
+  background-blend-mode: screen;
+  right: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 1150px) {
+  .bg-img{
+    width: 50vw;
+  } 
+  .sign-in-container{
+    left: 10%;
+    width: max-content;
+  }
+}  
+@media screen and (max-width: 1150px)  {
+  .bg-img{
+    width: 100vw;
+  }
+  .sign-in-container{
+    width: 100vw;
+  }
+  
+}
+
 .sign-in-container {
   position: absolute;
-  left: 10%;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -13,8 +50,8 @@
 }
 
 .login-form {
-  max-width: 300px;
-  width: 100%;
+  /* notresponding */
+  width: 388px; 
 }
 
 h1 {
@@ -23,11 +60,20 @@ h1 {
   color: #31a1a9;
 }
 
+.sign-in-container h1 {
+  width: 100%;
+}
+
 .sign-in-container p {
-  font-size: 16px;
-  font-weight: bold;
+  
   margin-bottom: 1vh;
   text-align: left;
+  color: #000;
+  font-family: Product Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 input {
@@ -80,6 +126,7 @@ header {
   justify-content: flex-end;
   padding-right: 10vw;
   padding-top: 2vh;
+  z-index: +1;
 }
 
 .signup-button-1 {
