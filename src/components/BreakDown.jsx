@@ -7,7 +7,7 @@ import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
 import Plot from "react-plotly.js";
 import data from "../test.json";
 
-const BreakDown = ({ isOpen, onClose, problemData }) => {
+const BreakDown = ({ isOpen, onClose, parseddata }) => {
   const apiResCollectionRef = collection(db, "apiResponses");
   const [latestEntry, setLatestEntry] = useState(null);
   const [deltaGraphData, setDeltaGraphData] = useState(null);
@@ -23,46 +23,46 @@ const BreakDown = ({ isOpen, onClose, problemData }) => {
       `data:image/png;base64,${data.encoded_image_with_boudning_boxes}`
     );
     ////////////////////////////////////////////////////////////
-    try {
-      const q = query(apiResCollectionRef);
-      const querySnapshot = await getDocs(q);
-      const rawData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      console.log(rawData);
+    // try {
+    //   const q = query(apiResCollectionRef);
+    //   const querySnapshot = await getDocs(q);
+    //   const rawData = querySnapshot.docs.map((doc) => ({
+    //     ...doc.data(),
+    //     id: doc.id,
+    //   }));
+    //   console.log(rawData);
 
-      if (!querySnapshot.empty) {
-        const latestEntryData = querySnapshot.docs[0].data();
-        console.log("Latest entry from otherCollection:", latestEntryData);
-        console.log(latestEntryData.data);
+    //   if (!querySnapshot.empty) {
+    //     const latestEntryData = querySnapshot.docs[0].data();
+    //     console.log("Latest entry from otherCollection:", latestEntryData);
+    //     console.log(latestEntryData.data);
 
-        // Check if data property exists before parsing
-        if (latestEntryData) {
-            const extractedData = JSON.parse(latestEntryData.data);
-            setLatestEntry(extractedData);
-            console.log("Extracted data:", extractedData);
-            setDeltaGraphData(extractedData.delta_graph_json);
-            setIndGraphData(extractedData.indentation_graph_json);
-            setBase64String(
-            `data:image/png;base64,${extractedData.encoded_image_with_boudning_boxes}`
-            );
-            // setData(extractedData)
-        } else {
-          console.warn(
-            "Data property not found in latest entry:",
-            latestEntryData
-          );
-          setLatestEntry(null);
-        }
-      } else {
-        console.log("No entries found in otherCollection.");
-        setLatestEntry(null);
-      }
-    } catch (error) {
-      console.error("Error getting latest entry from otherCollection:", error);
-      setLatestEntry(null);
-    }
+    //     // Check if data property exists before parsing
+    //     if (latestEntryData) {
+    //         const extractedData = JSON.parse(latestEntryData.data);
+    //         setLatestEntry(extractedData);
+    //         console.log("Extracted data:", extractedData);
+    //         setDeltaGraphData(extractedData.delta_graph_json);
+    //         setIndGraphData(extractedData.indentation_graph_json);
+    //         setBase64String(
+    //         `data:image/png;base64,${extractedData.encoded_image_with_boudning_boxes}`
+    //         );
+    //         // setData(extractedData)
+    //     } else {
+    //       console.warn(
+    //         "Data property not found in latest entry:",
+    //         latestEntryData
+    //       );
+    //       setLatestEntry(null);
+    //     }
+    //   } else {
+    //     console.log("No entries found in otherCollection.");
+    //     setLatestEntry(null);
+    //   }
+    // } catch (error) {
+    //   console.error("Error getting latest entry from otherCollection:", error);
+    //   setLatestEntry(null);
+    // }
   };
 
   useEffect(() => {

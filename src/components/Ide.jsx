@@ -85,7 +85,7 @@ const Ide = () => {
       handleCodeChange(final_code);
       const jsonString = JSON.stringify(apiResponseData);
       console.log(jsonString);
-      
+
       deleteAllDocuments();
       addDataToApiResCollection(apiResponseData);
     }
@@ -214,7 +214,7 @@ const Ide = () => {
       <BreakDown
         isOpen={isBreakDownOpen}
         onClose={() => setIsBreakDownOpen(false)}
-        problemData={rawEndPointOutput}
+        problemData={apiResponse}
       />
       <CodeModal
         isOpen={isCodeModalOpen}
