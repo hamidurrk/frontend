@@ -183,12 +183,12 @@ const IdeCore = () => {
       <CodeModal
         isOpen={isCodeModalOpen}
         onClose={() => setIsCodeModalOpen(false)}
-        codeData="Your code data goes here"
+        codeData={file.value}
       />
       <OutputModal
         isOpen={isOutputModalOpen}
         onClose={() => setIsOutputModalOpen(false)}
-        outputData="Your output data goes here"
+        outputData={output}
       />
       </div>
       <div className="container">
