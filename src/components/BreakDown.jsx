@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
 import Plot from "react-plotly.js";
-import data from "../test.json";
+// import data from "../test.json";
 
 const BreakDown = ({ isOpen, onClose, parseddata }) => {
   const apiResCollectionRef = collection(db, "apiResponses");
@@ -13,14 +13,14 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
   const [deltaGraphData, setDeltaGraphData] = useState(null);
   const [indGraphData, setIndGraphData] = useState(null);
   const [base64String, setBase64String] = useState("");
-//   const [data, setData] = useState(null);
+  const [data, setData] = useState(null);
 
   const getLatestEntryFromApiResCollection = async () => {
-    setDeltaGraphData(data.delta_graph_json);
-            setIndGraphData(data.indentation_graph_json);
-            setBase64String(
-            `data:image/png;base64,${data.encoded_image_with_boudning_boxes}`
-            );
+    // setDeltaGraphData(data.delta_graph_json);
+    //         setIndGraphData(data.indentation_graph_json);
+    //         setBase64String(
+    //         `data:image/png;base64,${data.encoded_image_with_boudning_boxes}`
+    //         );
     try {
       const q = query(apiResCollectionRef);
       const querySnapshot = await getDocs(q);
@@ -40,7 +40,12 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
             console.log(apiResponse);
             const {raw_ocr_output_code, encoded_image_with_boudning_boxes, delta_graph_json, indentation_graph_json, ir_algo_output_code, final_code} = apiResponse;
             console.log(final_code);
-            // setData(apiResponse)
+            setData(apiResponse);
+          setDeltaGraphData(apiResponse.delta_graph_json);
+          setIndGraphData(apiResponse.indentation_graph_json);
+          setBase64String(
+            `data:image/png;base64,${apiResponse.encoded_image_with_boudning_boxes}`
+          );
 
             
             
@@ -109,32 +114,32 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
     }
   }, [isOpen]);
 
-  const cardsData = [
-    {
-      title: "Raw OCR Output Code",
-      content: data.raw_ocr_output_code,
-    },
-    // {
-    //   title: "Encoded Image with Bounding Boxes",
-    //   content: data.encoded_image_with_boudning_boxes,
-    // },
-    // {
-    //   title: "Delta Graph JSON",
-    //   content: data.delta_graph_json,
-    // },
-    // {
-    //   title: "Indentation Graph JSON",
-    //   content: data.indentation_graph_json,
-    // },
-    {
-      title: "IR Algorithm Output Code",
-      content: data.ir_algo_name,
-    },
-    {
-      title: "Final Code",
-      content: data.final_code,
-    },
-  ];
+//   const cardsData = [
+//     {
+//       title: "Raw OCR Output Code",
+//       content: data.raw_ocr_output_code,
+//     },
+//     {
+//       title: "Encoded Image with Bounding Boxes",
+//       content: data.encoded_image_with_boudning_boxes,
+//     },
+//     {
+//       title: "Delta Graph JSON",
+//       content: data.delta_graph_json,
+//     },
+//     {
+//       title: "Indentation Graph JSON",
+//       content: data.indentation_graph_json,
+//     },
+//     {
+//       title: "IR Algorithm Output Code",
+//       content: data.ir_algo_name,
+//     },
+//     {
+//       title: "Final Code",
+//       content: data.final_code,
+//     },
+//   ];
 
   return (
     <Modal
@@ -142,6 +147,7 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
       onRequestClose={onClose}
       contentLabel="Problem Modal"
     >
+         {data && (  // Check if data is not null
       <Container>
         <Row>
           <Col>
@@ -224,9 +230,10 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
           </Col>
         </Row>
       </Container>
-      <button className="close-button" onClick={onClose}>
-        Close
-      </button>
+    )}
+    <button className="close-button" onClick={onClose}>
+      Close
+    </button>
     </Modal>
   );
 };
