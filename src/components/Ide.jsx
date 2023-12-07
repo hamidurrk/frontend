@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
 import "../styles/Idea.css";
 import { db } from "../firebase";
 import {
@@ -83,10 +83,31 @@ const Ide = () => {
       };
       console.log(final_code);
       handleCodeChange(final_code);
-      console.log(codeContent);
+      const jsonString = JSON.stringify(apiResponseData);
+      console.log(jsonString);
+      
+      deleteAllDocuments();
       addDataToApiResCollection(apiResponseData);
     }
   }, [apiResponse]); 
+
+  const deleteAllDocuments = async () => {
+  
+    try {
+      // Get all documents in the collection
+      const querySnapshot = await getDocs(apiResCollectionRef);
+  
+      // Delete each document
+      querySnapshot.forEach(async (doc) => {
+        await deleteDoc(doc.ref);
+        console.log(`Document with ID ${doc.id} deleted successfully.`);
+      });
+  
+      console.log('All documents deleted successfully.');
+    } catch (error) {
+      console.error('Error deleting documents:', error);
+    }
+  };
 
   const handleApiResponse = async (response) => {
     await setApiResponse(response);
@@ -209,13 +230,19 @@ const Ide = () => {
       <div className="container">
         
           {question && question.map((d) => {
-                return (
-                  <div className="question-container">
-                    <h1></h1>
-                    <div className="header">{d.problemID}, {d.problemHeader} </div>
-                    <div className="question">{d.content}</div>
-                    </div>
-                )
+            
+            if (id == d.problemID) {
+              console.log(d.problemID, d.content)
+              return (
+                <div className="question-container">
+                  <h1></h1>
+                  <div className="header">{d.problemID}. {d.problemHeader} </div>
+                  <div className="question">{d.content}</div>
+                  </div>
+              )
+
+            }
+                
             })}
         
         <div className="output-container">

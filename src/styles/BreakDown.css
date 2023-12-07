@@ -13,8 +13,8 @@
     background-color: #fff;
     border: 1px solid #ddd;
     padding: 20px;
-    text-align: center;
     overflow: hidden;
+    margin: 20px
   }
   
   .card::before {
@@ -24,7 +24,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border: 2px solid #3498db; 
+    border-bottom: 2px solid gray;
     pointer-events: none; 
   }
   

@@ -46,11 +46,6 @@ const SignIn = () => {
         isOpen={isSignUpModalOpen}
         onClose={() => setIsSignUpModalOpen(false)}
       />
-      <OutputModal
-        isOpen={isOutputModalOpen}
-        onClose={() => setIsOutputModalOpen(false)}
-        outputData="Your output data goes here"
-      />
       </header>
         <div className="sign-in-container">
         <form className="login-form" onSubmit={signIn}>

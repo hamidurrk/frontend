@@ -8,13 +8,13 @@ import Ide from './components/Ide';
 import IdeCore from './components/IdeCore'; 
 import ImageUpload from './components/ImageUpload';
 import ProblemDetails from './components/ProblemDetails';
+import Quiz from './components/Quiz';
 
 function App() {
   
   return (
     <Router>
       <div className="App">
-      <main>
           <Switch>
             <Route exact path="/">
               <SignIn />
@@ -37,12 +37,14 @@ function App() {
             <Route exact path="/imgup">
               <ImageUpload />
             </Route>
+            <Route exact path="/quiz">
+              <Quiz />
+            </Route>
             <Redirect from="/" to="/signin" /> 
           </Switch>
-        </main> 
       </div>
     </Router>
-      
+
   );
 }
 

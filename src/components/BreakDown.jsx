@@ -1,126 +1,201 @@
-// import Modal from "react-modal";
-// import "../styles/BreakDown.css";
-// // import { Card, Row, Col } from "react-bootstrap";
-// import { useState, useEffect } from "react";
-// import { db } from "../firebase";
-// import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
+import Modal from "react-modal";
+import "../styles/BreakDown.css";
+import { Card, Row, Col, Container } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { db } from "../firebase";
+import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
+import Plot from "react-plotly.js";
+import data from "../test.json";
 
-// const BreakDown = ({ isOpen, onClose, problemData }) => {
-//   const apiResCollectionRef = collection(db, "apiResponses");
-//   const [latestEntry, setLatestEntry] = useState(null);
+const BreakDown = ({ isOpen, onClose, problemData }) => {
+  const apiResCollectionRef = collection(db, "apiResponses");
+  const [latestEntry, setLatestEntry] = useState(null);
+  const [deltaGraphData, setDeltaGraphData] = useState(null);
+  const [indGraphData, setIndGraphData] = useState(null);
+  const [base64String, setBase64String] = useState("");
+  const [data, setData] = useState(null);
 
-//   const getLatestEntryFromApiResCollection = async () => {
-//     try {
-//       const q = query(apiResCollectionRef, orderBy("timestamp", "asc"));
-//       const querySnapshot = await getDocs(q);
-//       const rawData = querySnapshot.docs.map((doc) => ({
-//         ...doc.data(),
-//         id: doc.id,
-//       }));
-//       console.log(rawData);
-//       // const parsedOuterJSON = JSON.parse(rawData);
+  const getLatestEntryFromApiResCollection = async () => {
+    console.log(data.final_code);
+    setDeltaGraphData(data.delta_graph_json);
+    setIndGraphData(data.indentation_graph_json);
+    setBase64String(
+      `data:image/png;base64,${data.encoded_image_with_boudning_boxes}`
+    );
+    ////////////////////////////////////////////////////////////
+    try {
+      const q = query(apiResCollectionRef);
+      const querySnapshot = await getDocs(q);
+      const rawData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      console.log(rawData);
 
-//       // // Step 2: Parse the "data" property
-//       // const innerJSONString = parsedOuterJSON.data;
-//       // const parsedInnerJSON = JSON.parse(innerJSONString);
+      if (!querySnapshot.empty) {
+        const latestEntryData = querySnapshot.docs[0].data();
+        console.log("Latest entry from otherCollection:", latestEntryData);
+        console.log(latestEntryData.data);
 
-//       // // Now you can access properties of the inner JSON
-//       // console.log(parsedInnerJSON.raw_ocr_output_code);
-//       // console.log(parsedInnerJSON.encoded_image_with_boudning_boxes);
+        // Check if data property exists before parsing
+        if (latestEntryData) {
+            const extractedData = JSON.parse(latestEntryData.data);
+            setLatestEntry(extractedData);
+            console.log("Extracted data:", extractedData);
+            setDeltaGraphData(extractedData.delta_graph_json);
+            setIndGraphData(extractedData.indentation_graph_json);
+            setBase64String(
+            `data:image/png;base64,${extractedData.encoded_image_with_boudning_boxes}`
+            );
+            setData(extractedData)
+        } else {
+          console.warn(
+            "Data property not found in latest entry:",
+            latestEntryData
+          );
+          setLatestEntry(null);
+        }
+      } else {
+        console.log("No entries found in otherCollection.");
+        setLatestEntry(null);
+      }
+    } catch (error) {
+      console.error("Error getting latest entry from otherCollection:", error);
+      setLatestEntry(null);
+    }
+  };
 
-//       if (!querySnapshot.empty) {
-//         const latestEntryData = querySnapshot.docs[0].data();
-//         console.log("Latest entry from otherCollection:", latestEntryData);
-//         console.log(latestEntryData.final_code);
+  useEffect(() => {
+    if (isOpen) {
+        try{
+            getLatestEntryFromApiResCollection();
 
-//         // Check if data property exists before parsing
-//         if (latestEntryData) {
-//           setLatestEntry(latestEntryData);
-//         } else {
-//           console.warn(
-//             "Data property not found in latest entry:",
-//             latestEntryData
-//           );
-//           setLatestEntry(null);
-//         }
-//       } else {
-//         console.log("No entries found in otherCollection.");
-//         setLatestEntry(null);
-//       }
-//     } catch (error) {
-//       console.error("Error getting latest entry from otherCollection:", error);
-//       setLatestEntry(null);
-//     }
-//   };
+        } catch {
 
-//   useEffect(() => {
-//     if (isOpen) {
-//       getLatestEntryFromApiResCollection();
-//     }
-//   }, [isOpen]);
+        }
+    }
+  }, [isOpen]);
 
-//   const cardsData = [
-//     {
-//       title: "Raw OCR Output Code",
-//       content:"",
-//     },
-//     {
-//       title: "Encoded Image with Bounding Boxes",
-//       content:
-//         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-//     },
-//     {
-//       title: "Delta Graph JSON",
-//       content:
-//         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-//     },
-//     {
-//       title: "Indentation Graph JSON",
-//       content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-//     },
-//     {
-//       title: "IR Algorithm Output Code",
-//       content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-//     },
-//     {
-//       title: "Final Code",
-//       content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-//     },
-//   ];
+  const cardsData = [
+    {
+      title: "Raw OCR Output Code",
+      content: data.raw_ocr_output_code,
+    },
+    // {
+    //   title: "Encoded Image with Bounding Boxes",
+    //   content: data.encoded_image_with_boudning_boxes,
+    // },
+    // {
+    //   title: "Delta Graph JSON",
+    //   content: data.delta_graph_json,
+    // },
+    // {
+    //   title: "Indentation Graph JSON",
+    //   content: data.indentation_graph_json,
+    // },
+    {
+      title: "IR Algorithm Output Code",
+      content: data.ir_algo_name,
+    },
+    {
+      title: "Final Code",
+      content: data.final_code,
+    },
+  ];
 
-//   return (
-//     <Modal
-//       isOpen={isOpen}
-//       onRequestClose={onClose}
-//       contentLabel="Problem Modal"
-//     >
-//       {/* <h2>Problem</h2>
-//       <p>{problemData}</p>
-//       {latestEntry && (
-//         <div>
-//           <h3>Latest Entry</h3>
-//           <pre>{JSON.stringify(latestEntry, null, 2)}</pre>
-//         </div>
-//       )} */}
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      contentLabel="Problem Modal"
+    >
+      <Container>
+        <Row>
+          <Col>
+            <Card style={{ width: '50rem' }}>
+              <Card.Body>
+                <Card.Title>Raw OCR Output Code</Card.Title>
+                <Card.Text>{data.raw_ocr_output_code}</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={8} md={4}>
+            <Card style={{ width: '50rem' }}>
+              <Card.Body>
+                <Card.Title>Encoded Image with Bounding Boxes</Card.Title>
+                <Card.Text>
+                  <img src={base64String} alt="Base64 Image" />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
-//       <Row className="justify-content-center">
-//         {cardsData.map((card, index) => (
-//           <Col key={index} md={1}>
-//             <Card>
-//               <Card.Body>
-//                 <Card.Title>{card.title}</Card.Title>
-//                 <Card.Text>{card.content}</Card.Text>
-//               </Card.Body>
-//             </Card>
-//           </Col>
-//         ))}
-//       </Row>
+        <Row>
+          <Col>
+            <Card style={{ width: '50rem' }}>
+              <Card.Body>
+                <Card.Title>Delta Graph JSON</Card.Title>
+                <Card.Text>
+                  {deltaGraphData && (
+                    <Plot
+                      data={deltaGraphData.data}
+                      layout={deltaGraphData.layout}
+                    />
+                  )}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ width: '50rem' }}>
+              <Card.Body>
+                <Card.Title>Indentation Graph JSON</Card.Title>
+                <Card.Text>
+                  {indGraphData && (
+                    <Plot
+                      data={indGraphData.data}
+                      layout={indGraphData.layout}
+                    />
+                  )}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
-//       <button className="close-button" onClick={onClose}>
-//         Close
-//       </button>
-//     </Modal>
-//   );
-// };
+        <Row>
+          <Col>
+            <Card style={{ width: '50rem' }}>
+              <Card.Body>
+                <Card.Title>IR Algorithm Output Code</Card.Title>
+                <Card.Text>
+                  <pre style={{ whiteSpace: "pre-wrap" }}>
+                    {data.ir_algo_output_code}
+                  </pre>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ width: '50rem' }}>
+              <Card.Body>
+                <Card.Title>Final Code</Card.Title>
+                <Card.Text>
+                  <pre style={{ whiteSpace: "pre-wrap" }}>
+                    {data.final_code}
+                  </pre>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+      <button className="close-button" onClick={onClose}>
+        Close
+      </button>
+    </Modal>
+  );
+};
 
-// export default BreakDown;
+export default BreakDown;
