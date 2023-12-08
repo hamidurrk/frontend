@@ -134,6 +134,7 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
       isOpen={isOpen}
       onRequestClose={onClose}
       contentLabel="Problem Modal"
+      className={"modal-container"}
     >
     <button className="close-button" onClick={onClose}>
       Close
@@ -146,61 +147,61 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
       <Container>
         <Row>
           <Col>
-            <Card style={{ width: '50rem' }}>
+            <Card>
               <Card.Body>
                 <Card.Title>Raw OCR Output Code</Card.Title>
                 <Card.Text>{data.raw_ocr_output_code}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
-          <Col xs={8} md={4}>
-            <Card style={{ width: '50rem' }}>
+          <Col>
+            <Card >
               <Card.Body>
                 <Card.Title>Encoded Image with Bounding Boxes</Card.Title>
                 <Card.Text>
-                  <img src={base64String} alt="Base64 Image" />
+                  <img className="bd-content" src={base64String} alt="Base64 Image" />
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
-        </Row>
-
-        <Row>
+        
           <Col>
-            <Card style={{ width: '50rem' }}>
+            <Card >
               <Card.Body>
                 <Card.Title>Delta Graph JSON</Card.Title>
                 <Card.Text>
                   {deltaGraphData && (
-                    <Plot
+                    <Plot className="bd-content"
                       data={deltaGraphData.data}
                       layout={deltaGraphData.layout}
+                      style={{ width: '550px', height: 'auto' }}
                     />
                   )}
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
+          </Row>
+
+        <Row>
           <Col>
-            <Card style={{ width: '50rem' }}>
+            <Card >
               <Card.Body>
                 <Card.Title>Indentation Graph JSON</Card.Title>
                 <Card.Text>
                   {indGraphData && (
-                    <Plot
+                    <Plot className="bd-content"
                       data={indGraphData.data}
                       layout={indGraphData.layout}
+                      style={{ width: '550px', height: 'auto' }}
                     />
                   )}
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
-        </Row>
-
-        <Row>
           <Col>
-            <Card style={{ width: '50rem' }}>
+            <Card >
               <Card.Body>
                 <Card.Title>IR Algorithm Output Code</Card.Title>
                 <Card.Text>
@@ -212,7 +213,7 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
             </Card>
           </Col>
           <Col>
-            <Card style={{ width: '50rem' }}>
+            <Card >
               <Card.Body>
                 <Card.Title>Final Code</Card.Title>
                 <Card.Text>

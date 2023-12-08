@@ -132,7 +132,7 @@ li a {
 }
 
 .component-list {
-  width: 50vw;
+  width: 100%;
 }
 
 .component-preview {
@@ -140,7 +140,7 @@ li a {
   margin: 20px 0;
   /* border-bottom: 1px solid #fafafa; */
   border-radius: 10px;
-border: 1px solid #DEDEDE;
+  border: 1px solid #DEDEDE;
 }
 .component-preview:hover {
   box-shadow: 1px 3px 5px rgba(0,0,0,0.1);

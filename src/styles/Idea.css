@@ -91,6 +91,11 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    text-decoration: none;
+  }
+
+  .topbar .link {
+    text-decoration: none;
   }
 
   .run-cap {

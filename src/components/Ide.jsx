@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../styles/Idea.css";
 import { db } from "../firebase";
 import {
@@ -186,7 +186,8 @@ const Ide = () => {
   return (
     <div className="wrapper" id="wrapper">
       <div className="topbar">
-        <div className="title">BitSized</div>
+      <Link to={`/home`} className="link"> 
+        <div className="title">BitSized</div></Link>
             <div className="run-cap">
                 <div>
                     <div className="capture" onClick={() => setIsImagePopupOpen(true)}>

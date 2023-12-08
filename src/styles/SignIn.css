@@ -50,6 +50,12 @@ header {
   } */
 }
 
+@media screen and (max-width: 500px)  {
+  .signed-in-as p {
+    display: none;
+  }
+}
+
 .sign-in-container {
   position: absolute;
   top: 50%;
