@@ -12,7 +12,8 @@ const CompList = ({ components }) => {
             {Object.entries(component.topics)
               .sort(([keyA], [keyB]) => keyA.localeCompare(keyB)) // Sort by key
               .map(([key, value], index) => (
-                <p key={index}>{key}</p>
+                // Use a ternary operator to conditionally render the <p> element
+                value > 0 ? <p key={index}>{key} {console.log(key)}</p> : null
               ))}
           </div>
         </div>
