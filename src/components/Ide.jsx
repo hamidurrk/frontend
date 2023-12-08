@@ -242,7 +242,7 @@ const Ide = () => {
               return (
                 <div className="question-container">
                   <h1></h1>
-                  <div className="header">{d.problemID}. {d.problemHeader} </div>
+                  <div className="header">{d.problemHeader} </div>
                   <div className="question">{d.content}</div>
                   </div>
               )

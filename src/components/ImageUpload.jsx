@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Modal from 'react-modal';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { imageDb } from "../firebase";
 import { ref, uploadBytes, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
 import { Card, Form, Button, Image } from 'react-bootstrap';
@@ -77,6 +79,7 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
                   // If the response status code is not OK, throw an error with the status
                   const errorInfo = await response.json();
                   console.error('API request failed:', errorInfo);
+                  setLoading(false)
                   throw new Error(`HTTP error! Status: ${response.status}`);
               }
       
@@ -143,10 +146,10 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
             const {raw_ocr_output_code, encoded_image_with_boudning_boxes, delta_graph_json, indentation_graph_json, ir_algo_output_code, final_code} = apiResponse;
             console.log(final_code);
             onApiResponse(apiResponse);
-            setLoading(false);
             
+            setLoading(false);
             onClose();
-            alert("Image Uploaded Successfully");
+            toast.success('Image Uploaded Successfully');
           }
         } catch (error) {
           console.log('Error uploading image:', error);
@@ -164,15 +167,24 @@ const ImageUpload = ({ isOpen, onClose, onImageUpload, onApiResponse }) => {
           <Card className="p-4 shadow-lg">
             <Form>
               <Form.Group controlId="formFile">
-                <Form.Label>Select an image</Form.Label>
+                <Form.Label>Select an image </Form.Label>
                 <Form.Control type="file" onChange={handleFileChange} accept="image/*" />
               </Form.Group>
+              {loading ? (
+            <div className="my-4">
+              <h3>Image Preview:</h3>
               {imagePreview && (
-                <div className="my-4">
-                <h3>Image Preview:</h3>
-                <Image src={imagePreview} alt="Uploaded" fluid rounded className="border" style={{ maxWidth: '100%', maxHeight: '425px', objectFit: 'contain' }}/>
-                </div>
+                <Image
+                  src={imagePreview}
+                  alt="Uploaded"
+                  fluid
+                  rounded
+                  className="border"
+                  style={{ maxWidth: '100%', maxHeight: '425px', objectFit: 'contain' }}
+                />
               )}
+            </div>
+          ) : null}
               <br/>
               <Button className="close-button" onClick={uploadImageAndCheck} >{loading ? 'Uploading...' : 'Upload'}</Button>
             </Form>

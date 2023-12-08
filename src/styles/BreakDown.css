@@ -8,6 +8,9 @@
 
   @media screen and (min-width: 1300px)  {
     .container {
+      display: flex;
+      align-items: center; /* Center vertically */
+      justify-content: center; 
       width: 100%;
       height: auto;
     }
@@ -26,10 +29,12 @@
   @media screen and (max-width: 1300px)  {
     .container {
       display: flex;
+      align-items: center;
       justify-content: center;
       width: 100%;
       height: auto;
       flex-wrap: wrap;
+      margin-bottom: 60px;
     }
   
     .row {
@@ -42,8 +47,6 @@
     }
   }
 
-
-  
   .card {
     width: 80%;
     height: 80%;
@@ -90,6 +93,15 @@
     /* max-height: 100%; */
   }
 
+  .loading-text {
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    text-align: center;
+    
+  }
 
   .close-button {
     width: 130px;

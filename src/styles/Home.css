@@ -63,25 +63,40 @@
   position: relative;
 }
 
+@media screen and (min-width: 800px) {
+  .home-wrapper {
+    overflow: hidden auto;
+  }
+}
+
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
+  min-width: 100%;
+}
+
 .home-container {
   flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
   bottom: 0;
+  height: max-content;
 }
 
 .problem-container {
     flex-grow: 1;
-    width: 50vw;
+    width: max-content;
     min-width: 400px;
-    height: 100vh;
+    height: max-content;
 }
 
 .lesson-container { 
   /* change here later to flex grow 1 */
-  flex-grow: 0;
-    height: 100vh;
+    flex-grow: 0;
+    height: max-content;
     width: 0;
     min-width: 0;
 }
@@ -121,6 +136,8 @@
 
 .problems {
   width : 50%; 
+  min-width: 300px;
+  max-width: 500px;
   background-color : #fff; 
   margin : 40px auto; 
 }
@@ -135,23 +152,121 @@ li a {
   width: 100%;
 }
 
-.component-preview {
+/* .component-list-enter {
+  opacity: 0;
+}
+
+.component-list-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.component-list-exit {
+  opacity: 1;
+}
+
+.component-list-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+} */
+
+.component-list-container {
+  overflow-y: hidden;
+}
+
+.component-list-enter {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.component-list-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.component-list-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.component-list-exit-active {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 300ms, transform 300ms;
+}
+
+
+.problem-button {
   padding: 10px 16px;
   margin: 20px 0;
-  /* border-bottom: 1px solid #fafafa; */
+  border-radius: 10px;
+  border: 1px solid #31A1A9;
+  cursor: pointer;
+}
+.problem-button.active {
+  background: #31A1A9;
+}
+.problem-button.active h2 {
+  color: #fff;
+  background: #31A1A9;
+}
+.problem-button:hover {
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+}
+.problem-button h2 {
+  color: #31A1A9;
+  font-size: 24px;
+  line-height: normal;
+}
+
+.component-preview {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 16px;
+  margin: 20px 0;
   border-radius: 10px;
   border: 1px solid #DEDEDE;
+  min-height: 140px;
 }
 .component-preview:hover {
   box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
 }
 .component-preview h2 {
   font-size: 20px;
-  color: #31a1a9;
-  margin-bottom: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #1b7885;
+  padding-bottom: 35px;
 }
 .component-preview a{
   text-decoration: none;
+}
+
+.topics {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: flex-end;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.topics p {
+  min-width: 20px;
+  margin: 0;
+  margin-right: 5px; 
+  padding: 5px 10px 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #31A1A9;
+  color: #FFF;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap; 
+  cursor: default;
 }
 
 .auth-signout-button {

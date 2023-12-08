@@ -141,7 +141,7 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
     </button>
           {loading ? (
         // Render your loading animation here
-        <h1>Loading...</h1>
+        <h1 className="loading-text">Loading Latest Process Breakdown...</h1>
       ) : (
         data && (  // Check if data is not null
       <Container>
