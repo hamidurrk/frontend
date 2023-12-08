@@ -3,6 +3,7 @@
   height: 100vh;
   width: 100vw;
   right: 0;
+  overflow: hidden;
 }
 
 .bg-img {
@@ -29,7 +30,7 @@ header {
   } 
   .sign-in-container{
     left: 10%;
-    width: max-content;
+    width: 388px;
   }
   .signed-in-as {
     flex-wrap: nowrap;
@@ -65,14 +66,9 @@ header {
   align-items: center;
   justify-content: center;
   height: 70vh;
-  padding: 20px;
   text-align: center;
 }
 
-.login-form {
-  /* notresponding */
-  width: 388px; 
-}
 
 h1 {
   font-size: 32px;
@@ -95,12 +91,16 @@ h1 {
   font-weight: 500;
   line-height: normal;
 }
+.login-form {
+  max-width: 388px; 
+  width: 80%;
+}
 
 
 input {
   border-radius: 10px;
   border: 1px solid #d3d3d3;
-  width: 388px;
+  width: 100%;
   height: 59px;
   padding: 10px;
   margin-bottom: 15px;
@@ -130,7 +130,7 @@ button {
 }
 
 .login {
-  width: 388px;
+  width: 100%;
   height: 59px;
   flex-shrink: 0;
 
