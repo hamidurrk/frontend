@@ -153,18 +153,7 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
                 <Card.Text>{data.raw_ocr_output_code}</Card.Text>
               </Card.Body>
             </Card>
-          </Col>
-          <Col>
-            <Card >
-              <Card.Body>
-                <Card.Title>Encoded Image with Bounding Boxes</Card.Title>
-                <Card.Text>
-                  <img className="bd-content" src={base64String} alt="Base64 Image" />
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        
+          </Col>        
           <Col>
             <Card >
               <Card.Body>
@@ -174,25 +163,6 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
                     <Plot className="bd-content"
                       data={deltaGraphData.data}
                       layout={deltaGraphData.layout}
-                      style={{ width: '550px', height: 'auto' }}
-                    />
-                  )}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          </Row>
-
-        <Row>
-          <Col>
-            <Card >
-              <Card.Body>
-                <Card.Title>Indentation Graph JSON</Card.Title>
-                <Card.Text>
-                  {indGraphData && (
-                    <Plot className="bd-content"
-                      data={indGraphData.data}
-                      layout={indGraphData.layout}
                       style={{ width: '550px', height: 'auto' }}
                     />
                   )}
@@ -212,6 +182,36 @@ const BreakDown = ({ isOpen, onClose, parseddata }) => {
               </Card.Body>
             </Card>
           </Col>
+          </Row>
+
+        <Row>
+        <Col>
+            <Card >
+              <Card.Body>
+                <Card.Title>Encoded Image with Bounding Boxes</Card.Title>
+                <Card.Text>
+                  <img className="bd-content" src={base64String} alt="Base64 Image" />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+        </Col>
+        <Col>
+            <Card >
+              <Card.Body>
+                <Card.Title>Indentation Graph JSON</Card.Title>
+                <Card.Text>
+                  {indGraphData && (
+                    <Plot className="bd-content"
+                      data={indGraphData.data}
+                      layout={indGraphData.layout}
+                      style={{ width: '550px', height: 'auto' }}
+                    />
+                  )}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          
           <Col>
             <Card >
               <Card.Body>

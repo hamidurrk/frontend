@@ -9,7 +9,6 @@
   @media screen and (min-width: 1300px)  {
     .container {
       display: flex;
-      align-items: center; /* Center vertically */
       justify-content: center; 
       width: 100%;
       height: auto;
@@ -22,7 +21,7 @@
     }
     .col {
       width: 100%;
-      height: auto;
+      height: 600px;
     }
   }
   

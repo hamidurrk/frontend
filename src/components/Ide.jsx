@@ -262,7 +262,7 @@ const Ide = () => {
             <div className="editor-component">
               <Editor
                 key={editorKey}
-                height="100%"
+                height="300px"
                 width="100%"
                 theme="vs-light"
                 onMount={handleEditorDidMount}
