@@ -203,7 +203,7 @@ const IdeCore = () => {
         
         <div className="output-container">
           <div className="editor">
-            <div className="title">main.py</div>
+            <div className="title">Code Editor - main.py</div>
             <div className="editor-component">
               <Editor
                 key={editorKey}

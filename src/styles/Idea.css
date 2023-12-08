@@ -15,7 +15,7 @@ body {
       overflow: hidden;
     }
     .utils {
-        min-height: 90px;
+        min-height: 70px;
         background-color: #fff;
     }
     
@@ -32,6 +32,13 @@ body {
         border: 1px solid #DEDEDE;
         color: #ACACAC ;
     }
+    .question-container {
+      min-width: 400px;
+    }
+
+    .output-container {
+      min-width: 400px;
+    }
 
     .output{
         background: #fff;
@@ -39,9 +46,15 @@ body {
         border: 1px solid #DEDEDE;
         color: #ACACAC;
     }
+    .output-container {
+      height: 100vh;
+    }
   }
 
   @media screen and (max-width: 800px) {
+    .wrapper {
+      width: 100vw;
+    }
     .topbar {
       position: sticky;
       top: 0;
@@ -70,6 +83,20 @@ body {
         background: #353535;
         color: #ACACAC;
     }
+    .question-container {
+      min-width: 100%;
+    }
+    .output-container {
+      height: fit-content;
+      padding-bottom: 70px;
+      min-width: 100%;
+    }
+    .editor {
+      height: 50vh;
+    }
+    .editor-component {
+      height: 90%;
+    }
   }
 
   .topbar {
@@ -77,8 +104,8 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100vw;
+    min-width: 100%;
     min-height: 90px;
-    min-width: 400px;
     background-color: #fff;
     border: 1px solid #DEDEDE; 
   }
@@ -119,7 +146,7 @@ body {
 
   .utils {
     width: 100vw;
-    min-width: 400px;
+    min-width: 100%;
   }
 
   .button-1 {
@@ -152,15 +179,12 @@ body {
   .question-container {
     flex-grow: 1;
     width: 50vw;
-    min-width: 400px;
     height: 100vh;
   }
 
   .output-container {
     flex-grow: 1;
-    height: 100vh;
     width: 50vw;
-    min-width: 400px;
   }
   
   .question-container .header {
@@ -196,6 +220,8 @@ body {
 
   .editor .title {
     height: 20px;
+    padding-top: 5px;
+    border-top: 1px solid #DEDEDE;
   }
 
   .editor .editor-component {
@@ -206,7 +232,7 @@ body {
 
   .terminal-output {
     margin: 10px 0 10px;
-    min-height: 30%;
+    min-height: 300px;
     border: 1px solid #2d2d2d;
     background-color: #353535;
     color: #e6e6e6;
@@ -214,7 +240,7 @@ body {
     font-family: 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.4;
-    overflow: scroll;
+    overflow: auto;
   }
 
   .terminal-output .title {

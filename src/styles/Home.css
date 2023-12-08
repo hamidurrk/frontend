@@ -74,6 +74,7 @@
   flex-direction: column;
   justify-content: flex-start;
   height: 100vh;
+  width: 100vw;
   min-width: 100%;
 }
 
@@ -84,12 +85,13 @@
   width: 100vw;
   bottom: 0;
   height: max-content;
+  overflow: hidden;
 }
 
 .problem-container {
     flex-grow: 1;
     width: max-content;
-    min-width: 400px;
+    width: 100%;
     height: max-content;
 }
 
@@ -98,11 +100,9 @@
     flex-grow: 0;
     height: max-content;
     width: 0;
-    min-width: 0;
 }
 
 .title-right {
-  position: absolute;
   top: 2vh;
   right: 2vw;
   display: flex;
@@ -139,7 +139,7 @@
   min-width: 300px;
   max-width: 500px;
   background-color : #fff; 
-  margin : 40px auto; 
+  margin : 40px auto 100px; 
 }
 
 
@@ -250,18 +250,19 @@ li a {
   justify-content: flex-end;
   margin-top: auto;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .topics p {
-  min-width: 20px;
-  margin: 0;
+  width: fit-content;
+  margin: 10px 5px 0px 5px;
   margin-right: 5px; 
   padding: 5px 10px 5px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background: #31A1A9;
   color: #FFF;
-  font-size: 11px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
