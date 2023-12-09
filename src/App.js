@@ -9,6 +9,7 @@ import IdeCore from './components/IdeCore';
 import ImageUpload from './components/ImageUpload';
 import ProblemDetails from './components/ProblemDetails';
 import Quiz from './components/Quiz';
+import QuizDynamic from './components/QuizDynamic';
 
 function App() {
   
@@ -39,6 +40,9 @@ function App() {
             </Route>
             <Route exact path="/quiz">
               <Quiz />
+            </Route>
+            <Route exact path="/quizd">
+              <QuizDynamic />
             </Route>
             <Redirect from="/" to="/signin" /> 
           </Switch>
