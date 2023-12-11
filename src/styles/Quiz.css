@@ -79,6 +79,9 @@
   .quiz-button{
     width: 40%;
   }
+  .go-home-button {
+    width: 40%;
+  }
   }
 
   @media screen and (max-width: 800px) {
@@ -92,6 +95,9 @@
   }  
   .quiz-button{
     width: 70%;
+  }
+  .go-home-button {
+    width: 60%;
   }
   }
   
@@ -111,8 +117,6 @@
   cursor: pointer;
   }
   .go-home-button {
-    
-    width: 40%;
     height: 49px;
     flex-shrink: 0;
     margin-top: 20px;
