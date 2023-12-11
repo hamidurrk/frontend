@@ -137,11 +137,13 @@ body {
   .capture {
     width: fit-content;
     margin-top: 15px;
+    cursor: pointer;
   }
   
   .run-button {
     border-radius: 5px;
     background: #31A1A9;
+    cursor: pointer;
   }
 
   .utils {

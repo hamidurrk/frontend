@@ -8,7 +8,7 @@ const CompList = ({ components, problemList }) => {
     .map((component) => (
       <div className="component-preview" key={component.problemID}>
         <Link to={`/ide/${component.problemID}`}>
-          <h2>{component.problemID}, {component.problemHeader}</h2>
+          <h2>{component.problemHeader}</h2>
         </Link>
         <div className="topics">
           {Object.entries(component.topics)
